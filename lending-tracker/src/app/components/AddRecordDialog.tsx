@@ -133,7 +133,7 @@ export default function AddRecordDialog() {
           <Button onClick={handleSubmit}>Create Record</Button>
         </DialogFooter>
       </DialogContent>
-      
+
             <AlertDialog open={showConfirmation} onOpenChange={setShowConfirmation}>
         <AlertDialogContent>
           <AlertDialogHeader>
