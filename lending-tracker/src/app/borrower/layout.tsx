@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Sidebar */}
       <aside className="w-64 bg-gray-800 text-white p-4 hidden md:block">
         <nav className="flex flex-col space-y-3">
-          <Link href="/dashboard" className="hover:text-yellow-300">Dashboard</Link>
+          <Link href="../dashboard" className="hover:text-yellow-300">Dashboard</Link>
           <Link href="../borrower" className="hover:text-yellow-300">Borrowers</Link>
           <Link href="../transaction" className="hover:text-yellow-300">Transactions</Link>
           <Link href="/dashboard/payments" className="hover:text-yellow-300">Payments</Link>
