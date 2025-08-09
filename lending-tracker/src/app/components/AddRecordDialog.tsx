@@ -22,6 +22,7 @@ import {
   AlertDialogAction
 } from "@/components/ui/alert-dialog";
 
+import {CircleCheckBig} from "lucide-react";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -86,9 +87,12 @@ export default function AddRecordDialog({ type = 'lending' }) {
     };
 
     // Generate PDF
+   
     const doc = new jsPDF();
     const now = new Date();
+     console.log(doc.getFontList());
     doc.setFontSize(16);
+    doc.setFont("arial");
     doc.text("Lending Transaction Record", 20, 20);
     doc.setFontSize(12);
     doc.text(`Borrower Name: ${name}`, 20, 40);
@@ -212,7 +216,12 @@ export default function AddRecordDialog({ type = 'lending' }) {
       <AlertDialog open={showConfirmation} onOpenChange={setShowConfirmation}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Record added</AlertDialogTitle>
+            <AlertDialogTitle>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <CircleCheckBig className="h-8 w-8 text-green-600" />
+                Record added
+              </span>
+            </AlertDialogTitle>
             <AlertDialogDescription>
               Do you want to clear the form and close the dialog?
             </AlertDialogDescription>

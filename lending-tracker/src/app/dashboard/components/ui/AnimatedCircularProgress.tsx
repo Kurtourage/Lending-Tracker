@@ -19,7 +19,7 @@ export const AnimatedCircularProgress: React.FC<AnimatedCircularProgressProps> =
     circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center ">
       <svg
         height={radius * 2}
         width={radius * 2}
@@ -54,13 +54,13 @@ export const AnimatedCircularProgress: React.FC<AnimatedCircularProgressProps> =
           dominantBaseline="middle"
           textAnchor="middle"
           
-          className="text-sm fill-black font-semibold"
+          className="text-sm fill-white font-semibold"
         >
           {percentage}%
         </text>
       </svg>
       {label && (
-        <span className="mt-1 text-xs text-black">{label}</span>
+        <span className="mt-1 text-xs text-white">{label}</span>
       )}
     </div>
   );

@@ -6,6 +6,13 @@ export const metadata = {
   title: 'Lending Tracker',
 };
 
+
+const colors = {
+  primary: "#1E3A8A",
+  primaryLight: "#3B82F6",
+  cream: "#FFFDEB",
+}
+
 type RootLayoutProps = {
   children: ReactNode;
 };
@@ -13,7 +20,7 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className="bg-black text-gray-900">{children}</body>
+      <body className="bg-cream" style={{ backgroundColor: colors.cream }}>{children}</body>
     </html>
   );
 }

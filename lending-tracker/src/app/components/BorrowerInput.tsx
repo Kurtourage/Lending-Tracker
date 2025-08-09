@@ -11,7 +11,7 @@ const dummyBorrowers = [
 export default function BorrowerInput({ value = "", onChange, onMatchFound }) {
   const [titleCased, setTitleCased] = useState("");
   const [matchFound, setMatchFound] = useState(false);
-  const prevMatchRef = useRef(null); // to track previous match state
+  const prevMatchRef = useRef(false); // to track previous match state
 
   const toTitleCase = (str) =>
     str
