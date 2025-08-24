@@ -72,45 +72,64 @@ export default function TransactionsPage() {
 
   return (
     <div className="p-4 space-y-4">
-      <div className="flex items-center justify-between bg-[#1E3A8A] p-4 rounded-lg shadow-md">
-        <h1 className="text-lg font-semibold text-white">Transactions</h1>
-        <ToggleGroup
-          className="bg-white rounded-lg shadow-md p-2"
-          type="single"
-          value={filter}
-          onValueChange={(val) => val && setFilter(val)}
-        >
-          <ToggleGroupItem value="all"
-          className="data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:shadow-md transition rounded-xl px-4 py-2" >All</ToggleGroupItem>
-          <ToggleGroupItem value="lending"
-          className="data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:shadow-md transition rounded-xl px-4 py-2">Lending</ToggleGroupItem>
-          <ToggleGroupItem value="payment"
-          className="data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:shadow-md transition rounded-xl px-4 py-2">Payment</ToggleGroupItem>
-        </ToggleGroup>
-    
-      
-        
-      <Input
-        placeholder="Search name..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="max-w-sm text-black bg-white"
-      />
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-[#1E3A8A] p-4 rounded-lg shadow-md">
+  {/* Title */}
+  <h1 className="text-lg font-semibold text-white">Transactions</h1>
 
-        <Button asChild className="bg-[#FFFDEB] rounded-lg shadow-md text-[#1E3A8A] hover:bg-[#FFFFFF] hover:text-[#1E3A8A]">
-          <Link href="/transactions/create">Create Transaction</Link>
-        </Button>
-      
-      </div>
+  {/* Filters */}
+  <ToggleGroup
+    className="bg-white rounded-lg shadow-md p-2 flex flex-wrap justify-center sm:align-center gap-2"
+    type="single"
+    value={filter}
+    onValueChange={(val) => val && setFilter(val)}
+  >
+    <ToggleGroupItem
+      value="all"
+      className="data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:shadow-md transition rounded-xl px-3 py-1 text-sm sm:px-4 sm:py-2"
+    >
+      All
+    </ToggleGroupItem>
+    <ToggleGroupItem
+      value="lending"
+      className="data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:shadow-md transition rounded-xl px-3 py-1 text-sm sm:px-4 sm:py-2"
+    >
+      Lending
+    </ToggleGroupItem>
+    <ToggleGroupItem
+      value="payment"
+      className="data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:shadow-md transition rounded-xl px-3 py-1 text-sm sm:px-4 sm:py-2"
+    >
+      Payment
+    </ToggleGroupItem>
+  </ToggleGroup>
+
+  {/* Search + Button */}
+  <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+    <Input
+      placeholder="Search name..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="text-black bg-white w-full sm:w-48"
+    />
+
+    <Button
+      asChild
+      className="bg-[#FFFDEB] rounded-lg shadow-md text-[#1E3A8A] hover:bg-[#FFFFFF] hover:text-[#1E3A8A] w-full sm:w-auto"
+    >
+      <Link href="/transactions/create">Create Transaction</Link>
+    </Button>
+  </div>
+</div>
+
 
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead>Borrower</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead>Amount</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+          <TableRow className="bg-[#1E3A8A] text-white hover:bg-[#1E3A8A]">
+            <TableHead className="text-white">Borrower</TableHead>
+            <TableHead className="text-white">Type</TableHead>
+            <TableHead className="text-white">Amount</TableHead>
+            <TableHead className="text-white">Date</TableHead>
+            <TableHead className="text-white text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -118,7 +137,8 @@ export default function TransactionsPage() {
             <TableRow key={t.id}>
               <TableCell>
                 <Link
-                  href={`/borrowers/${t.borrower.id}`}
+                //TODO: Update this link to point to the borrower's detail page
+                  href={`/borrower/${t.borrower.id}`}
                   className="text-blue-600 hover:underline"
                 >
                   {t.borrower.name}

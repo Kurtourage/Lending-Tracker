@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -9,14 +10,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
 import { Button } from "@/components/ui/button";
+
 const colors = {
   primary: "#1E3A8A",
   primaryLight: "#3B82F6",
   cream: "#FFFDEB",
 }
-
 
 type Borrower = {
   id: number;
@@ -26,6 +26,7 @@ type Borrower = {
   status: 'Active' | 'Inactive';
 };
 
+// Dummy data for now
 const dummyBorrowers: Borrower[] = [
   { id: 1, name: 'Juan Dela Cruz', phone: '09171234567', totalLoan: 15000, status: 'Active' },
   { id: 2, name: 'Maria Clara', phone: '09181234567', totalLoan: 25000, status: 'Active' },
@@ -41,7 +42,6 @@ const dummyBorrowers: Borrower[] = [
 
 export default function BorrowerPage() {
   const [search, setSearch] = useState('');
-  const [selected, setSelected] = useState<Borrower | null>(null);
 
   const filtered = dummyBorrowers.filter((b) =>
     b.name.toLowerCase().includes(search.toLowerCase())
@@ -49,76 +49,47 @@ export default function BorrowerPage() {
 
   return (
     <div className="p-6 space-y-6 bg-[#FFFDEB] min-h-screen">
-      <div className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md">
- <h1 className="text-2xl font-bold text-[#1E3A8A]">Borrowers</h1>
+      <div className="flex flex-col sm:flex-row items-center justify-between bg-white p-4 rounded-lg shadow-md gap-4">
+        <h1 className="text-2xl font-bold text-[#1E3A8A]">Borrowers</h1>
 
-      <Input
-        placeholder="Search borrowers..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="max-w-sm"
-      />  
-
+        <Input
+          placeholder="Search borrowers..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="max-w-sm"
+        />
       </div>
-     
 
       <Table>
         <TableHeader>
           <TableRow className="bg-[#1E3A8A] text-white hover:bg-[#1E3A8A]">
             <TableHead className="text-white">Name</TableHead>
-            <TableHead className="text-white">Phone</TableHead>
+            <TableHead className="text-white">Contact details</TableHead>
             <TableHead className="text-white">Total Loan</TableHead>
             <TableHead className="text-white">Status</TableHead>
-            <TableHead className="text-white">Actions</TableHead>
+            
           </TableRow>
         </TableHeader>
         <TableBody>
           {filtered.map((borrower) => (
             <TableRow key={borrower.id}>
-              <TableCell>{borrower.name}</TableCell>
+              <TableCell>
+                <Link
+                //TODO: Update this link to point to the borrower's detail page
+                  href={`/borrower/${borrower.id}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {borrower.name}
+                </Link>
+              </TableCell>
               <TableCell>{borrower.phone}</TableCell>
               <TableCell>₱{borrower.totalLoan.toLocaleString()}</TableCell>
               <TableCell>{borrower.status}</TableCell>
-              <TableCell className="space-x-2">
-                <Button
-                  variant="outline"
-                  className="border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#3B82F6] hover:text-white"
-                  onClick={() => setSelected(borrower)}
-                >
-                  View
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-gray-500 text-gray-600 hover:bg-gray-200"
-                  onClick={() => console.log('Edit', borrower)}
-                >
-                  Edit
-                </Button>
-              </TableCell>
+              
             </TableRow>
           ))}
         </TableBody>
       </Table>
-
-      {selected && (
-        <div className="p-4 mt-6 bg-white border border-gray-300 rounded-lg shadow-sm">
-          <h2 className="text-xl font-semibold text-[#1E3A8A]">Borrower Details</h2>
-          <p><strong>Name:</strong> {selected.name}</p>
-          <p><strong>Phone:</strong> {selected.phone}</p>
-          <p><strong>Total Loan:</strong> ₱{selected.totalLoan.toLocaleString()}</p>
-          <p><strong>Status:</strong> {selected.status}</p>
-
-          <div className="mt-4">
-            <Button
-              variant="ghost"
-              onClick={() => setSelected(null)}
-              className="text-red-600 hover:bg-red-100"
-            >
-              Close
-            </Button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

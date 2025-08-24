@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 
 type AnimatedCircularProgressProps = {
@@ -11,27 +9,27 @@ export const AnimatedCircularProgress: React.FC<AnimatedCircularProgressProps> =
   percentage,
   label = '',
 }) => {
-  const radius = 40;
+  const size = 80; // base size for viewBox
   const stroke = 8;
-  const normalizedRadius = radius - stroke / 2;
-  const circumference = 2 * Math.PI * normalizedRadius;
-  const strokeDashoffset =
-    circumference - (percentage / 100) * circumference;
+  const radius = (size - stroke) / 2; // radius inside viewBox
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="flex flex-col items-center justify-center ">
+    <div className="flex flex-col items-center justify-center w-full h-full">
       <svg
-        height={radius * 2}
-        width={radius * 2}
-        className=""
+        viewBox={`0 0 ${size} ${size}`}
+        width="100%"
+        height="100%"
+        className="block"
       >
         <circle
           stroke="#e5e7eb"
           fill="transparent"
           strokeWidth={stroke}
-          r={normalizedRadius}
-          cx={radius}
-          cy={radius}
+          r={radius}
+          cx={size / 2}
+          cy={size / 2}
         />
         <circle
           stroke="#3b82f6"
@@ -40,9 +38,9 @@ export const AnimatedCircularProgress: React.FC<AnimatedCircularProgressProps> =
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={circumference}
-          r={normalizedRadius}
-          cx={radius}
-          cy={radius}
+          r={radius}
+          cx={size / 2}
+          cy={size / 2}
           style={{
             strokeDashoffset,
             transition: 'stroke-dashoffset 1s ease-out',
@@ -53,14 +51,19 @@ export const AnimatedCircularProgress: React.FC<AnimatedCircularProgressProps> =
           y="50%"
           dominantBaseline="middle"
           textAnchor="middle"
-          
-          className="text-sm fill-white font-semibold"
+          className="fill-white font-semibold"
+          style={{ fontSize: size * 0.25 }}
         >
           {percentage}%
         </text>
       </svg>
       {label && (
-        <span className="mt-1 text-xs text-white">{label}</span>
+        <span
+          className="mt-1 text-white"
+          style={{ fontSize: size * 0.15 }}
+        >
+          {label}
+        </span>
       )}
     </div>
   );

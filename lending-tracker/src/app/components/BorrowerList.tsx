@@ -6,6 +6,9 @@ type Borrower = {
   status: 'Active' | 'Cleared' | 'Delinquent'
 }
 
+// Sample data for demonstration purposes
+// In a real application, this would be fetched from an API or database
+
 const sampleBorrowers: Borrower[] = [
   { name: 'Juan Dela Cruz', totalDebt: 5000, status: 'Active' },
   { name: 'Maria Santos', totalDebt: 2000, status: 'Cleared' },

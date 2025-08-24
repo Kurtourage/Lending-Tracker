@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+
+// TODO: Replace this with actual data fetching logic
+// This is just a placeholder for demonstration purposes
 const dummyBorrowers = [
   { name: "Juan Dela Cruz" },
   { name: "Maria Clara" },

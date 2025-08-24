@@ -49,31 +49,31 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <Card className="bg-[#1E3A8A]">
         <CardContent className="p-3 sm:p-4 text-white">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ml-10 mr-10">
             <div>
               <p className="text-xs sm:text-sm">Total Lent</p>
               <p className="text-lg sm:text-xl font-bold">₱125,000</p>
             </div>
-            <HandCoins className="h-5 w-5 sm:h-6 sm:w-6" />
+            <HandCoins className="h-10 w-10 sm:h-10 sm:w-10" />
           </div>
         </CardContent>
       </Card>
 
       <Card className="bg-[#1E3A8A]">
         <CardContent className="p-3 sm:p-4 text-white">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ml-10 mr-10">
             <div>
               <p className="text-xs sm:text-sm">Total Repaid</p>
               <p className="text-lg sm:text-xl font-bold">₱92,500</p>
             </div>
-            <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6" />
+            <CheckCircle className="h-10 w-10 sm:h-10 sm:w-10" />
           </div>
         </CardContent>
       </Card>
 
       <Card className="bg-[#1E3A8A]">
         <CardContent className="p-3 sm:p-4 text-white">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ml-10 mr-10">
             <div>
               <p className="text-xs sm:text-sm">Active Borrowers</p>
               <p className="text-lg sm:text-xl font-bold">34</p>
@@ -85,7 +85,7 @@ export default function Dashboard() {
 
       <Card className="bg-[#1E3A8A]">
         <CardContent className="p-3 sm:p-4 text-white">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ml-10 mr-10">
             <div>
               <p className="text-xs sm:text-sm">Pending Payments</p>
               <p className="text-lg sm:text-xl font-bold">₱21,000</p>
@@ -96,26 +96,32 @@ export default function Dashboard() {
       </Card>
     </div>
 
-
+    
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text">
-        <Card className="bg-[#1E3A8A]">
-          <CardContent className="p-4 space-y-2 text-white">
-            <h2 className="text-lg font-semibold mb-4">Repayment Progress</h2>
-            <div className="flex gap-6 text-white">
-              <div className="relative w-24 h-24">
-                <AnimatedCircularProgress percentage={41} label="August Collection" />
-              </div>
-              <div className="relative w-24 h-24">
-                <AnimatedCircularProgress percentage={30} label="Total Collection" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+                <Card className="bg-[#1E3A8A] ">
+                  <CardContent className="p-4 space-y-2 text-white">
+                    <h2 className="text-lg font-semibold mb-4">Repayment Progress</h2>
+                    <div className="flex gap-6 justify-center grid-cols-3 gap-3 items-center">
+                      <div className="relative w-20 sm:w-24 md:w-28 lg:w-30 aspect-square">
+                        <AnimatedCircularProgress percentage={41} label="" />
+                        <h3> August collection</h3>
+                      </div>
+                      <div className="relative w-20 sm:w-24 md:w-28 lg:w-30 aspect-square">
+                        <AnimatedCircularProgress percentage={30} label="" />
+                        <h3> Total collection</h3>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-        <Card className="bg-[#1E3A8A]">
-          <CardContent className="p-4">
-            <h2 className="text-lg font-semibold mb-2 text-white">Recent Transactions</h2>
+                <Card className="bg-[#1E3A8A]">
+                    <CardContent className="p-4">
+            <h2 className="text-lg font-semibold mb-2 text-white"
+            //TODO: Add a link to the borrower's detail page
+            //Add live data
+            >Recent Transactions</h2> 
             <Table className="text-white">
+              
               <TableHeader>
                 <TableRow  className=" text-white">
                   <TableHead className=" text-white">Name</TableHead>
